@@ -83,3 +83,42 @@ contract BasicToken is ERC20Basic, SafeMath {
   }
 
 }
+
+
+contract StandardToken is BasicToken, ERC20 {
+
+  mapping (address => mapping (address => uint)) allowed;
+
+  function transferFrom(address _from, address _to, uint _value) {
+    var _allowance = allowed[_from][msg.sender];
+
+    balances[_to] = safeAdd(balances[_to], _value);
+    balances[_from] = safeSub(balances[_from], _value);
+    allowed[_from][msg.sender] = safeSub(_allowance, _value);
+    Transfer(_from, _to, _value);
+  }
+
+  function approve(address _spender, uint _value) {
+    allowed[msg.sender][_spender] = _value;
+    Approval(msg.sender, _spender, _value);
+  }
+
+  function allowance(address _owner, address _spender) constant returns (uint remaining) {
+    return allowed[_owner][_spender];
+  }
+
+}
+
+contract SimpleToken is StandardToken {
+
+  string public name = "FomoToken";
+  string public symbol = "FOMO";
+  uint public INITIAL_SUPPLY = 1000;
+  uint public decimals = 18;
+
+  function SimpleToken() {
+    totalSupply = INITIAL_SUPPLY;
+    balances[msg.sender] = INITIAL_SUPPLY;
+  }
+
+}
