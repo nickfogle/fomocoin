@@ -111,10 +111,10 @@ contract StandardToken is BasicToken, ERC20 {
 
 contract SimpleToken is StandardToken {
 
-  string public name = "FomoToken";
+  string public name = "FomoCoin";
   string public symbol = "FOMO";
-  uint public INITIAL_SUPPLY = 1000;
-  uint public decimals = 18;
+  uint public INITIAL_SUPPLY = 1000000;
+  uint public decimals = 3;
 
   function SimpleToken() {
     totalSupply = INITIAL_SUPPLY;
