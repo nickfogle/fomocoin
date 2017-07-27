@@ -1,5 +1,6 @@
 pragma solidity ^0.4.6;
 
+// Adds safety checks for contractual operations
 contract SafeMath {
   function safeMul(uint a, uint b) internal returns (uint) {
     uint c = a * b;
@@ -48,6 +49,7 @@ contract SafeMath {
   }
 }
 
+// Comport with ERC20 Standard
 contract ERC20Basic {
   uint public totalSupply;
   function balanceOf(address who) constant returns (uint);
@@ -55,13 +57,14 @@ contract ERC20Basic {
   event Transfer(address indexed from, address indexed to, uint value);
 }
 
+// Comport with ERC20 Standard
 contract ERC20 is ERC20Basic {
   function allowance(address owner, address spender) constant returns (uint);
-
   function transferFrom(address from, address to, uint value);
   function approve(address spender, uint value);
   event Approval(address indexed owner, address indexed spender, uint value);
 }
+
 
 contract BasicToken is ERC20Basic, SafeMath {
 
@@ -84,14 +87,13 @@ contract BasicToken is ERC20Basic, SafeMath {
 
 }
 
-
+// Setup Transferability and Allowance
 contract StandardToken is BasicToken, ERC20 {
 
   mapping (address => mapping (address => uint)) allowed;
 
   function transferFrom(address _from, address _to, uint _value) {
     var _allowance = allowed[_from][msg.sender];
-
     balances[_to] = safeAdd(balances[_to], _value);
     balances[_from] = safeSub(balances[_from], _value);
     allowed[_from][msg.sender] = safeSub(_allowance, _value);
@@ -109,6 +111,7 @@ contract StandardToken is BasicToken, ERC20 {
 
 }
 
+// Define Basics Parameters of Token
 contract SimpleToken is StandardToken {
 
   string public name = "FomoCoin";
