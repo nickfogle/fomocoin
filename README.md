@@ -1,5 +1,9 @@
 # ERC20 Compatible Fomo Coin
 
+![Fomo Coin](http://i.imgur.com/xyn8bKd.png)
+
+
+
 ## Features
 
 ### Uses OpenZeppelin Audited Contract Code
@@ -9,5 +13,4 @@
 ### FOMO Guaranteed
 
 
-08/01/17 - FOMO was deployed to the Main Ethereum Network -
-https://etherscan.io/token/0x35b4307f65ac299ef9c46bf89aee170e9b377aed?a=0xa435d2139d08fa77adc89d9d56dd88491df5861f
+08/01/17 - FOMO was deployed to the Main Ethereum Network - [Etherscan Link](https://etherscan.io/token/0x35b4307f65ac299ef9c46bf89aee170e9b377aed?a=0xa435d2139d08fa77adc89d9d56dd88491df5861f)
